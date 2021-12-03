@@ -17,7 +17,7 @@ func main() {
 	q2part2(data)
 	elapsed := time.Since(start)
 
-	fmt.Printf("Main took %s", elapsed)
+	fmt.Printf("Main took %s\n", elapsed)
 }
 
 func q2part1(data []string) {
