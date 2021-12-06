@@ -1,13 +1,17 @@
-package main
+package answers
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
-	"time"
-
-	lib "../lib"
 )
+
+func Day4() []int {
+	data := ReadInputAsStr(4)
+	return []int{
+		q4part1(data),
+		q4part2(data),
+	}
+}
 
 type Board struct {
 	id        int
@@ -76,17 +80,6 @@ func (b Board) isWinning() bool {
 	return false
 }
 
-func main() {
-	start := time.Now()
-
-	data := lib.ReadInputAsStr(4)
-	q4part1(data)
-	q4part2(data)
-	elapsed := time.Since(start)
-
-	fmt.Printf("Main took %s\n", elapsed)
-}
-
 func ConvertRowsToBoard(boardData [][]int) Board {
 	var positions []*BoardPosition
 	rows := make([][]*BoardPosition, 5)
@@ -149,20 +142,20 @@ func parseInput(input []string) ([]int, []*Board) {
 	return numbersCalled, boards
 }
 
-func q4part1(data []string) {
+func q4part1(data []string) int {
 	numbersCalled, boards := parseInput(data)
 	for roundNumber, numberCalled := range numbersCalled {
 		for _, board := range boards {
 			board.CallNumber(numberCalled)
 			if roundNumber >= 5 && board.isWinning() {
-				fmt.Printf("Question 4 Part 1 Answer: %d\n", board.Score())
-				return
+				return board.Score()
 			}
 		}
 	}
+	return -1
 }
 
-func q4part2(data []string) {
+func q4part2(data []string) int {
 	numbersCalled, boards := parseInput(data)
 	for _, numberCalled := range numbersCalled {
 		stillPlaying := []*Board{}
@@ -175,10 +168,10 @@ func q4part2(data []string) {
 				stillPlaying = append(stillPlaying, board)
 
 			} else if len(boards) == 1 {
-				fmt.Printf("Question 4 Part 2 Answer: %d\n", boards[0].Score())
+				return boards[0].Score()
 			}
 		}
 		boards = stillPlaying
 	}
-
+	return -1
 }

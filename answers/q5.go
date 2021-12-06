@@ -1,12 +1,9 @@
-package main
+package answers
 
 import (
 	"fmt"
 	"strconv"
 	"strings"
-	"time"
-
-	lib "../lib"
 )
 
 type Coord struct {
@@ -105,18 +102,16 @@ func ParseInput(input []string) []Line {
 	return lines
 }
 
-func main() {
-	start := time.Now()
+func Day5() []int {
+	data := ReadInputAsStr(5)
+	return []int{
+		q5part1(data),
+		q5part2(data),
+	}
 
-	data := lib.ReadInputAsStr(5)
-	q5part1(data)
-	q5part2(data)
-	elapsed := time.Since(start)
-
-	fmt.Printf("Main took %s", elapsed)
 }
 
-func q5part1(data []string) {
+func q5part1(data []string) int {
 	lines := ParseInput(data)
 	vents := make(map[Coord]int)
 	for _, line := range lines {
@@ -129,11 +124,10 @@ func q5part1(data []string) {
 			counter++
 		}
 	}
-	fmt.Printf("Day 5 Part 1 %d\n", counter)
-
+	return counter
 }
 
-func q5part2(data []string) {
+func q5part2(data []string) int {
 	lines := ParseInput(data)
 	vents := make(map[Coord]int)
 	for _, line := range lines {
@@ -146,5 +140,5 @@ func q5part2(data []string) {
 			counter++
 		}
 	}
-	fmt.Printf("Day 5 Part 2 %d\n", counter)
+	return counter
 }

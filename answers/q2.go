@@ -1,26 +1,19 @@
-package main
+package answers
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
-	"time"
-
-	lib "../lib"
 )
 
-func main() {
-	start := time.Now()
-
-	data := lib.ReadInputAsStr(2)
-	q2part1(data)
-	q2part2(data)
-	elapsed := time.Since(start)
-
-	fmt.Printf("Main took %s\n", elapsed)
+func Day2() []int {
+	data := ReadInputAsStr(2)
+	return []int{
+		q2part1(data),
+		q2part2(data),
+	}
 }
 
-func q2part1(data []string) {
+func q2part1(data []string) int {
 	start_x := 0
 	start_y := 0
 
@@ -40,10 +33,10 @@ func q2part1(data []string) {
 			start_y += -distance
 		}
 	}
-	fmt.Printf("Question 2 Part 1 Solution: %d\n", start_x*start_y)
+	return start_x * start_y
 }
 
-func q2part2(data []string) {
+func q2part2(data []string) int {
 	start_x := 0
 	start_y := 0
 	aim := 0
@@ -66,5 +59,5 @@ func q2part2(data []string) {
 			aim += -distance
 		}
 	}
-	fmt.Printf("Question 2 Part 2 Solution: %d\n", start_x*start_y)
+	return start_x * start_y
 }

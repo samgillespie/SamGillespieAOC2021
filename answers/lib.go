@@ -1,4 +1,4 @@
-package lib
+package answers
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 )
 
 func ReadInputAsStr(value int) []string {
-	data, err := ioutil.ReadFile("q" + strconv.Itoa(value) + ".txt")
+	data, err := ioutil.ReadFile("./inputs/q" + strconv.Itoa(value) + ".txt")
 	if err != nil {
 		fmt.Println("File reading error", err)
 		return nil
@@ -38,6 +38,5 @@ func ReadCSVAsInt(value int) []int {
 			fmt.Println(err)
 		}
 	}
-	fmt.Println(ary)
 	return ary
 }

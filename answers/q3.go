@@ -1,27 +1,20 @@
-package main
+package answers
 
 import (
-	"fmt"
 	"math"
-	"time"
-
-	lib "../lib"
 )
 
 var rowLength = 12
 
-func main() {
-	start := time.Now()
-
-	data := lib.ReadInputAsStr(3)
-	q3part1(data)
-	q3part2(data)
-	elapsed := time.Since(start)
-
-	fmt.Printf("Main took %s\n", elapsed)
+func Day3() []int {
+	data := ReadInputAsStr(3)
+	return []int{
+		q3part1(data),
+		q3part2(data),
+	}
 }
 
-func q3part1(data []string) {
+func q3part1(data []string) int {
 	gammaRate := ""
 	epsilonRate := ""
 	sum_gamma := 0.0
@@ -46,7 +39,7 @@ func q3part1(data []string) {
 			epsilonRate += "1"
 		}
 	}
-	fmt.Printf("Question 3 Part 1 Solution: %d\n", int(sum_gamma*sum_epsilon))
+	return int(sum_gamma * sum_epsilon)
 }
 
 func calculate_oxygen(data []string) string {
@@ -117,9 +110,10 @@ func binary_to_decimal(value string) int {
 	}
 	return int(sum)
 }
-func q3part2(data []string) {
+
+func q3part2(data []string) int {
 	oxy := calculate_oxygen(data)
 	co2 := calculate_co2(data)
 	solution := binary_to_decimal(oxy) * binary_to_decimal(co2)
-	fmt.Printf("Question 3 Part 2 Solution: %d\n", solution)
+	return solution
 }
