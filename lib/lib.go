@@ -26,3 +26,18 @@ func ReadInputAsInt(value int) []int {
 	}
 	return ary
 }
+
+func ReadCSVAsInt(value int) []int {
+	str_values := ReadInputAsStr(value)
+	str_values = strings.Split(str_values[0], ",")
+	ary := make([]int, len(str_values))
+	var err error
+	for i := range str_values {
+		ary[i], err = strconv.Atoi(str_values[i])
+		if err != nil {
+			fmt.Println(err)
+		}
+	}
+	fmt.Println(ary)
+	return ary
+}
