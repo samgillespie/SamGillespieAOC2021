@@ -20,6 +20,7 @@ var questionMap = map[int]interface{}{
 	6: answers.Day6,
 	7: answers.Day7,
 	8: answers.Day8,
+	9: answers.Day9,
 }
 
 func main() {
@@ -31,7 +32,7 @@ func main() {
 		fmt.Printf("Day %d Part 2 Answer : %d\n", question, result[1])
 	} else {
 		runs := make([]time.Duration, 0, 1000)
-		for i := 0; i < 1000; i++ {
+		for i := 0; i < 100; i++ {
 			start := time.Now()
 			SolveQuestion()
 			runs = append(runs, time.Since(start))
