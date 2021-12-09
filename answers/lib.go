@@ -40,3 +40,36 @@ func ReadCSVAsInt(value int) []int {
 	}
 	return ary
 }
+
+func abs(a int) int {
+	if a < 0 {
+		return -a
+	}
+	return a
+}
+
+func maxSlice(slice []int) (int, int) {
+	// Returns position, value
+	max := -99999999999
+	pos := -1
+	for index, elem := range slice {
+		if elem > max {
+			max = elem
+			pos = index
+		}
+	}
+	return pos, max
+}
+
+func minSlice(slice []int) (int, int) {
+	// Returns position, value
+	min := 99999999999
+	pos := -1
+	for index, elem := range slice {
+		if elem < min {
+			min = elem
+			pos = index
+		}
+	}
+	return pos, min
+}
