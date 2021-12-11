@@ -12,15 +12,16 @@ var question int
 var runProfile bool
 
 var questionMap = map[int]interface{}{
-	1: answers.Day1,
-	2: answers.Day2,
-	3: answers.Day3,
-	4: answers.Day4,
-	5: answers.Day5,
-	6: answers.Day6,
-	7: answers.Day7,
-	8: answers.Day8,
-	9: answers.Day9,
+	1:  answers.Day1,
+	2:  answers.Day2,
+	3:  answers.Day3,
+	4:  answers.Day4,
+	5:  answers.Day5,
+	6:  answers.Day6,
+	7:  answers.Day7,
+	8:  answers.Day8,
+	9:  answers.Day9,
+	10: answers.Day10,
 }
 
 func main() {
