@@ -23,11 +23,11 @@ var questionMap = map[int]interface{}{
 	9:  answers.Day9,
 	10: answers.Day10,
 	11: answers.Day11,
+	12: answers.Day12,
 }
 
 func main() {
 	parseArgs()
-	// question := 1
 	if runProfile == false {
 		result := SolveQuestion()
 		fmt.Printf("Day %d Part 1 Answer : %d\n", question, result[0])
@@ -58,11 +58,33 @@ func main() {
 }
 
 func SolveQuestion() []int {
-	f := reflect.ValueOf(questionMap[question])
-	var res []reflect.Value
-	res = f.Call(res)
-	result := res[0].Interface()
-	return result.([]int)
+
+	if question == 0 {
+		times := []time.Duration{}
+		for i := 1; i <= 12; i++ {
+			start := time.Now()
+			f := reflect.ValueOf(questionMap[i])
+			var res []reflect.Value
+			res = f.Call(res)
+			_ = res[0].Interface()
+			end := time.Since(start)
+			times = append(times, end)
+
+			fmt.Printf("Day %d: Time Taken %s\n", i, end)
+		}
+		var totalDuration time.Duration
+		for _, dur := range times {
+			totalDuration += dur
+		}
+		fmt.Printf("Total Time Taken: %s\n\n", totalDuration)
+		return []int{0, 0}
+	} else {
+		f := reflect.ValueOf(questionMap[question])
+		var res []reflect.Value
+		res = f.Call(res)
+		result := res[0].Interface()
+		return result.([]int)
+	}
 }
 
 func parseArgs() {
