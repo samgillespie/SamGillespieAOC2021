@@ -107,7 +107,8 @@ func PrintPath(path []CaveSection) {
 func q12part1(caveMap map[string]CaveSection) int {
 	start := caveMap["start"]
 	activePaths := [][]CaveSection{[]CaveSection{start}}
-	finishedPaths := [][]CaveSection{}
+	//finishedPaths := [][]CaveSection{}
+	finishedPaths := 0
 	for len(activePaths) > 0 {
 		// Remove the first elementts
 		path := activePaths[0]
@@ -119,7 +120,7 @@ func q12part1(caveMap map[string]CaveSection) int {
 		}
 		lastPosition := path[len(path)-1]
 		if lastPosition.Name == "end" {
-			finishedPaths = append(finishedPaths, path)
+			finishedPaths += 1
 			continue
 		}
 
@@ -147,13 +148,13 @@ func q12part1(caveMap map[string]CaveSection) int {
 		// fmt.Println("---- END CYCLE ---- ")
 	}
 	// PrintPaths(finishedPaths)
-	return len(finishedPaths)
+	return finishedPaths
 }
 
 func q12part2(caveMap map[string]CaveSection) int {
 	start := caveMap["start"]
 	activePaths := [][]CaveSection{[]CaveSection{start}}
-	finishedPaths := [][]CaveSection{}
+	finishedPaths := 0
 	for len(activePaths) > 0 {
 		// Remove the first elementts
 		path := activePaths[0]
@@ -165,7 +166,8 @@ func q12part2(caveMap map[string]CaveSection) int {
 		}
 		lastPosition := path[len(path)-1]
 		if lastPosition.Name == "end" {
-			finishedPaths = append(finishedPaths, path)
+			finishedPaths += 1
+			// finishedPaths = append(finishedPaths, path)
 			continue
 		}
 
@@ -190,5 +192,5 @@ func q12part2(caveMap map[string]CaveSection) int {
 		}
 	}
 	// PrintPaths(finishedPaths)
-	return len(finishedPaths)
+	return finishedPaths
 }
