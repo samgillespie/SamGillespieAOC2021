@@ -43,6 +43,7 @@ func (d Dots) Print() {
 	for _, dot := range d {
 		diagram[dot.y][dot.x] = '#'
 	}
+	fmt.Println(" -- Day 13 Part 2 Solution -- ")
 	for _, row := range diagram {
 		fmt.Println(string(row))
 	}
