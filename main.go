@@ -4,14 +4,13 @@ import (
 	"code/aoc2021/answers"
 	"flag"
 	"fmt"
-	"reflect"
 	"time"
 )
 
 var question int
 var runProfile bool
 
-var questionMap = map[int]interface{}{
+var questionMap = map[int]func() []int{
 	1:  answers.Day1,
 	2:  answers.Day2,
 	3:  answers.Day3,
@@ -26,6 +25,7 @@ var questionMap = map[int]interface{}{
 	12: answers.Day12,
 	13: answers.Day13,
 	14: answers.Day14,
+	15: answers.Day15,
 }
 
 func main() {
@@ -36,7 +36,7 @@ func main() {
 		fmt.Printf("Day %d Part 2 Answer : %d\n", question, result[1])
 	} else {
 		runs := make([]time.Duration, 0, 1000)
-		for i := 0; i < 100; i++ {
+		for i := 0; i < 1000; i++ {
 			start := time.Now()
 			SolveQuestion()
 			runs = append(runs, time.Since(start))
@@ -60,15 +60,11 @@ func main() {
 }
 
 func SolveQuestion() []int {
-
 	if question == 0 {
 		times := []time.Duration{}
 		for i := 1; i <= 12; i++ {
 			start := time.Now()
-			f := reflect.ValueOf(questionMap[i])
-			var res []reflect.Value
-			res = f.Call(res)
-			_ = res[0].Interface()
+			questionMap[i]()
 			end := time.Since(start)
 			times = append(times, end)
 
@@ -81,11 +77,7 @@ func SolveQuestion() []int {
 		fmt.Printf("Total Time Taken: %s\n\n", totalDuration)
 		return []int{0, 0}
 	} else {
-		f := reflect.ValueOf(questionMap[question])
-		var res []reflect.Value
-		res = f.Call(res)
-		result := res[0].Interface()
-		return result.([]int)
+		return questionMap[question]()
 	}
 }
 
