@@ -185,7 +185,7 @@ func PrintFscore(fscores map[int]int, xmax int, ymax int) {
 }
 
 func h(node *Node, nodes Nodes) int {
-	return (nodes.xmax-node.x)*3 + (nodes.ymax-node.y)*3
+	return (nodes.xmax - node.x) + (nodes.ymax - node.y)
 }
 
 func PerformAStar(nodes Nodes) int {
