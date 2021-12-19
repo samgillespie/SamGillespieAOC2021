@@ -27,6 +27,8 @@ var questionMap = map[int]func() []int{
 	14: answers.Day14,
 	15: answers.Day15,
 	16: answers.Day16,
+	17: answers.Day17,
+	18: answers.Day18,
 }
 
 func main() {
@@ -63,7 +65,7 @@ func main() {
 func SolveQuestion() []int {
 	if question == 0 {
 		times := []time.Duration{}
-		for i := 1; i <= 12; i++ {
+		for i := 1; i <= 16; i++ {
 			start := time.Now()
 			questionMap[i]()
 			end := time.Since(start)
